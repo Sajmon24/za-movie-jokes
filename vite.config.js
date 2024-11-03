@@ -7,4 +7,20 @@ export default defineConfig({
   server: {
     port: 3000,
   },
+  esbuild: {
+    jsxInject: `import React from 'react'`,
+  },
+  optimizeDeps: {
+    include: [
+      "@chakra-ui/react",
+      "@chakra-ui/icons",
+      "@emotion/react",
+      "@emotion/styled",
+    ],
+  },
+  resolve: {
+    alias: {
+      src: "/src",
+    },
+  },
 });
