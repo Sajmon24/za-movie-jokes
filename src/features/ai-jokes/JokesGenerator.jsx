@@ -11,7 +11,6 @@ function JokesGenerator({ movieId, movieTitle, movieDescription }) {
   const toast = useToast();
   const joke = useSelector((state) => selectJokeByMovieId(state, movieId));
   const jokeStatus = useSelector(selectJokesStatus);
- 
 
   const handleGenerateJoke = async () => {
     try {
@@ -37,7 +36,7 @@ function JokesGenerator({ movieId, movieTitle, movieDescription }) {
           <Badge fontSize="0.9em" colorScheme="green" mr={1}>
             Joke:
           </Badge>
-          <Text as="span">{joke?.joke}</Text>
+          <Text as="span">{joke}</Text>
         </Text>
       )}
       <Button

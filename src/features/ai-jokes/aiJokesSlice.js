@@ -5,7 +5,7 @@ import { OPENAI_COMPLETIONS_API_URL } from "src/common/constants";
 const initialState = {
   rules: [{ name: "Joke Type", description: "Programmer" }],
   jokes: {
-    jokes: [],
+    jokes: {},
     status: "idle", // 'idle' / 'loading' / 'suceeded' / 'failed'
     error: null,
   },
@@ -48,7 +48,6 @@ export const fetchJoke = createAsyncThunk(
         },
       }
     );
-
     return { movieId, joke: response.data.choices[0].message.content };
   }
 );
@@ -79,15 +78,7 @@ const aiJokesSlice = createSlice({
       })
       .addCase(fetchJoke.fulfilled, (state, action) => {
         state.jokes.status = "succeeded";
-
-        const jokeIndex = state.jokes.jokes.findIndex(
-          (joke) => joke.movieId === action.payload.movieId
-        );
-        if (jokeIndex > -1) {
-          state.jokes.jokes[jokeIndex] = action.payload;
-        } else {
-          state.jokes.jokes.push(action.payload);
-        }
+        state.jokes[action.payload.movieId] = action.payload.joke;
       })
       .addCase(fetchJoke.rejected, (state, action) => {
         state.jokes.status = "failed";
@@ -101,6 +92,6 @@ export const { ruleAdded, ruleRemoved } = aiJokesSlice.actions;
 export const selectJokesStatus = (state) => state.aiJokes.jokes.status;
 export const selectJokesRules = (state) => state.aiJokes.rules;
 export const selectJokeByMovieId = (state, movieId) =>
-  state.aiJokes.jokes.jokes.find((joke) => joke.movieId === movieId);
+  state.aiJokes.jokes.jokes[movieId];
 
 export default aiJokesSlice.reducer;
