@@ -8,7 +8,7 @@ import {
   selectAllMovies,
   selectMoviesError,
   selectMoviesStatus,
-} from "./movieSlice";
+} from "./moviesSlice";
 
 function MoviesList() {
   const dispatch = useDispatch();
@@ -16,9 +16,6 @@ function MoviesList() {
   const movies = useSelector(selectAllMovies);
   const moviesStatus = useSelector(selectMoviesStatus);
   const moviesError = useSelector(selectMoviesError);
-
-  console.log(movies);
-  console.log(moviesStatus);
 
   useEffect(() => {
     const fetchData = async () => {

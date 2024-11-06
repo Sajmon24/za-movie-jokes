@@ -1,8 +1,8 @@
 import axiosLib from "axios";
-import { MOVIE_API_URL } from "src/common/constants";
+import { MOVIEDB_API_URL } from "src/common/constants";
 
 const axios = axiosLib.create({
-  baseURL: MOVIE_API_URL,
+  baseURL: MOVIEDB_API_URL,
   /*
     headers: {
     Authorization: `Bearer ${import.meta.env.VITE_MOVIEDB_API_KEY}`,

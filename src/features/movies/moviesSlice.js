@@ -12,7 +12,7 @@ export const fetchMovies = createAsyncThunk("movies/fetchMovies", async () => {
   return data.data;
 });
 
-const movieSlice = createSlice({
+const moviesSlice = createSlice({
   name: "movies",
   initialState,
   reducers: {},
@@ -38,4 +38,4 @@ export const selectMoviesError = (state) => state.movies.error;
 export const selectMovieById = (state, movieId) =>
   state.movies.movies.find((movie) => movie.id === Number(movieId));
 
-export default movieSlice.reducer;
+export default moviesSlice.reducer;

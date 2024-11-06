@@ -21,13 +21,13 @@ import {
 } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
-import { ruleAdded, ruleRemoved } from "./aiJokesSlice";
+import { ruleAdded, ruleRemoved, selectJokesRules } from "./aiJokesSlice";
 
 const initialFormState = { name: "", description: "" };
 
 function JokesSettings() {
   const dispatch = useDispatch();
-  const rules = useSelector((state) => state.aiJokes.rules);
+  const rules = useSelector(selectJokesRules);
   const [form, setForm] = useState(initialFormState);
 
   const handleRuleRemove = (ruleName) => {
@@ -41,8 +41,8 @@ function JokesSettings() {
   };
 
   return (
-    <Popover>
-      <PopoverTrigger placement="bottom-start">
+    <Popover placement="bottom-start">
+      <PopoverTrigger>
         <Button leftIcon={<SettingsIcon />} variant="solid">
           Settings
         </Button>

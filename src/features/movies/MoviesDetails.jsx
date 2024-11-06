@@ -1,8 +1,7 @@
 import { useSelector } from "react-redux";
-//import { ArrowBackIcon } from "@chakra-ui/icons";
+import { ChevronLeftIcon } from "@chakra-ui/icons";
 import {
   Box,
-  Button,
   Card,
   CardBody,
   CardFooter,
@@ -13,8 +12,9 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { Link, useParams } from "react-router-dom";
+import JokesGenerator from "src/features/ai-jokes/JokesGenerator";
 import { MOVIEDB_IMAGES_URL } from "src/common/constants";
-import { selectMovieById } from "./movieSlice";
+import { selectMovieById } from "./moviesSlice";
 
 function MoviesDetails() {
   const { movieId } = useParams();
@@ -29,7 +29,7 @@ function MoviesDetails() {
           bg="white"
           border="1px"
           borderColor="gray.300"
-          // icon={<ArrowBackIcon />} //ArrowBackIcon
+          icon={<ChevronLeftIcon />} //ArrowBackIcon
         />
       </Link>
       <Card
@@ -52,9 +52,11 @@ function MoviesDetails() {
           </CardBody>
 
           <CardFooter>
-            <Button bg="green.300" color="white">
-              Generate Joke
-            </Button>
+            <JokesGenerator
+              movieId={movie.id}
+              movieTitle={movie.title}
+              movieDescription={movie.overview}
+            />
           </CardFooter>
         </Stack>
       </Card>
