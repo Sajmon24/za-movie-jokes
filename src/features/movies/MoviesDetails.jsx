@@ -22,7 +22,6 @@ function MoviesDetails() {
   const { movieId } = useParams();
   const { data, isError, error, isLoading, isSuccess } =
     useGetMovieByIdQuery(movieId);
-  console.log(data, isError, error, isLoading, isSuccess);
 
   let content;
   if (isSuccess) {
@@ -67,7 +66,7 @@ function MoviesDetails() {
   } else if (isError) {
     content = (
       <Flex alignItems="center" justifyContent="center">
-        {error?.data?.status_message ?? "Something went wrong"}
+        {error}
       </Flex>
     );
   }
@@ -83,8 +82,8 @@ function MoviesDetails() {
           borderColor="gray.300"
           icon={<ChevronLeftIcon />} //ArrowBackIcon
         />
-        {content}
       </Link>
+      {content}
     </Box>
   );
 }
